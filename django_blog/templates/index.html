@@ -1,6 +1,7 @@
-<h1>Привет {{ who }}!</h1>
+{% extends "base.html" %}
 
-<ul>
-    <li><a href="{% url 'about' %}">О нас</a></li>
-    <li><a href="{% url 'articles' %}">Статьи</a></li>
-</ul>
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать {{ who }}!</h1>
+{% endblock %}
