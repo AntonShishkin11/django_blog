@@ -18,9 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from django_blog import views
+from django_blog.views import HomePageView
 
 urlpatterns = [
-    path('', views.index),
+    path("", HomePageView.as_view(), name="home"),
     path('about/', views.about, name='about'),
     path('articles/', include('django_blog.article.urls')),
     path('admin/', admin.site.urls),
