@@ -3,9 +3,12 @@
 {% block title %}Статьи{% endblock %}
 
 {% block content %}
-<h1>Текст статьи</h1>
-<p>{{ tags|join:', ' }}</p>
-<p>Статья номер {{}}. Тег python</p>
+<h1>Статьи</h1>
+<p>Теги: {{ tags|join:', ' }}</p>
+<ol>
+{% for article in articles %}
+    <li>{{ article.name }}: {{ article.body }} <a href="{% url 'article_view' article.id %}">Ссылка</a></li>
+{% endfor %}
+</ol>
 {% endblock %}
-
 
