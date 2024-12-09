@@ -5,10 +5,13 @@
 {% block content %}
 <h1>Статьи</h1>
 <p>Теги: {{ tags|join:', ' }}</p>
-<ol>
+
 {% for article in articles %}
-    <li>{{ article.name }}: {{ article.body }} <a href="{% url 'article_view' article.id %}">Ссылка</a></li>
+    <div>
+        <h2><a href="{% url 'article_view' article.id %}">{{ article.name }}</a></h2>
+        <div>{{ article.body }} </div>
+    </div>
 {% endfor %}
-</ol>
+
 {% endblock %}
 
