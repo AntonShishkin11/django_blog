@@ -6,6 +6,8 @@
 <h1>Статьи</h1>
 <p>Теги: {{ tags|join:', ' }}</p>
 
+<div><a href="{% url 'add_article' %}">Добавить статью</a></div>
+
 {% for article in articles %}
     <div>
         <h2><a href="{% url 'article_view' article.id %}">{{ article.name }}</a></h2>

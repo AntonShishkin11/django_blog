@@ -1,0 +1,17 @@
+{% extends 'base.html' %}}
+
+{% block title %}Создать статью{% endblock %}
+
+{% block content %}
+
+<h1>Создать новую статью</h1>
+
+
+<form action="{% url 'add_article' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Создать</button>
+</form>
+
+
+{% endblock %}
