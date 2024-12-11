@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
@@ -31,9 +32,35 @@ class AddArticleView(View):
         form = CreateArticleForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('article_view', article_id=Article.objects.last().pk)
+            messages.success(request, 'Статья успешно добавлена!')
+            return redirect('article')
+        else:
+            messages.error(request, 'Ошибка при добавлении статьи.')
 
         return render(request, 'articles/add_article.html', {'form': form})
+
+class EditArticleView(View):
+
+    def get(self, request, *args, **kwargs):
+        article_id = kwargs.get('id')
+        article = get_object_or_404(Article, id=kwargs.get('id'))
+        form = CreateArticleForm(instance=article)
+
+        return render(request, 'articles/update.html', {'form': form, 'article': article})
+
+    def post(self, request, *args, **kwargs):
+
+        article = Article.objects.get(id=kwargs.get('id'))
+        form = CreateArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Статья изменена!')
+            return redirect('article')
+        else:
+            messages.error(request, 'Ошибка при редактиовании статьи.')
+            return redirect('articles')
+
+        return render(request, 'articles/update.html', {'form': form})
 
 
 # class CommentArticleView(View):

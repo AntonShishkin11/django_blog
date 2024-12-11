@@ -1,10 +1,10 @@
 {% extends 'base.html' %}}
 
-{% block title %}Создать статью{% endblock %}
+{% block title %}Редактор статьи{% endblock %}
 
 {% block content %}
 
-<h1>Создать новую статью</h1>
+<h1>Изменить статью</h1>
 
 {% if form.errors %}
     <div>
@@ -17,10 +17,10 @@
 {% endif %}
 
 
-<form action="{% url 'add_article' %}" method="post">
+<form action="{% url 'articles_update' id=article.id %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Создать статью</button>
+    <button type="submit">Сохранить изменения</button>
 </form>
 
 
